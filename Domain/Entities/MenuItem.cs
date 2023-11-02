@@ -8,6 +8,6 @@ namespace Domain.Entities
     public class MenuItem
     {
         public Guid Id { get; set; }
-        public Item Item { get; set; }
+        public required Item Item { get; set; }
     }
 }
