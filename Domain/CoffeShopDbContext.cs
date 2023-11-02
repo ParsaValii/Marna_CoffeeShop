@@ -17,17 +17,18 @@ namespace Domain
         //    Configuration = configuration;
         //}
 
-        // protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        // {
-        //     optionsBuilder.UseNpgsql(
-        //         "Server=localhost;Database=coffeeshopdb;Port=5432;User Id=postgres;Password=postgres"
-        //     );
-        // }
+         //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+         //{
+         //    optionsBuilder.UseNpgsql(
+         //        "Server=localhost;Database=coffeeshopdb;Port=5432;User Id=postgres;Password=postgres"
+         //    );
+         //}
 
         public CoffeShopDbContext(DbContextOptions<CoffeShopDbContext> options)
             : base(options) { }
 
         public DbSet<MenuItem> Menu { get; set; }
         public DbSet<Item> Items { get; set; }
+        public DbSet<CustomerOrderList> CustomerOrderList{ get; set; }
     }
 }

@@ -16,8 +16,9 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<CoffeShopDbContext>(
         options => options.UseNpgsql("Server=localhost;Database=coffeeshopdb;Port=5432;User Id=postgres;Password=postgres"));
 
-// builder.Services.AddDbContext<CoffeShopDbContext>(o => o.UseNpgsql("Server=localhost;Database=coffeshopdb;Port=5432;User Id=postgres;Password=postgres"));//builder.Configuration.GetConnectionString("CoffeShopDb")
+//builder.Services.AddDbContext<CoffeShopDbContext>(o => o.UseNpgsql("Server=localhost;Database=coffeshopdb;Port=5432;User Id=postgres;Password=postgres"));//builder.Configuration.GetConnectionString("CoffeShopDb")
 builder.Services.AddScoped<IItemService, ItemService>();
+builder.Services.AddScoped<ICustomerOrderListService, CustomerOrderListService>();
 
 var app = builder.Build();
 
