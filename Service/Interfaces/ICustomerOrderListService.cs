@@ -7,6 +7,6 @@ namespace Service.Interfaces
 {
     public class ICustomerOrderListService
     {
-        
+        public void AddToOrderList(AddToOrderListDto request) { }
     }
 }
