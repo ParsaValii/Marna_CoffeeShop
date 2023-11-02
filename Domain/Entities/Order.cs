@@ -11,10 +11,5 @@ namespace Domain.Entities
         public string CustomeName { get; set; }
         List<Item> InList = new List<Item>();
         public int TotalPrice { get; set; }
-
-        public void CreateOrder(string CustomeName, params Item[] items) 
-        { 
-            
-        }
     }
 }
