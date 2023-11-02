@@ -11,18 +11,15 @@ namespace Domain
 {
     public class CoffeShopDbContext : DbContext
     {
-        //protected readonly IConfiguration Configuration;
-        //public CoffeShopDbContext(IConfiguration configuration)
-        //{
-        //    Configuration = configuration;
-        //}
+        // protected readonly IConfiguration Configuration;
+        public CoffeShopDbContext() { }
 
-         //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-         //{
-         //    optionsBuilder.UseNpgsql(
-         //        "Server=localhost;Database=coffeeshopdb;Port=5432;User Id=postgres;Password=postgres"
-         //    );
-         //}
+         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+         {
+            optionsBuilder.UseNpgsql(
+                "Server=localhost;Database=coffeeshopdb;Port=5432;User Id=postgres;Password=postgres"
+            );
+         }
 
         public CoffeShopDbContext(DbContextOptions<CoffeShopDbContext> options)
             : base(options) { }
