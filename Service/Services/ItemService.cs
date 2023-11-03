@@ -29,5 +29,10 @@ namespace Service.Services
             await _context.Items.AddAsync(item);
             await _context.SaveChangesAsync();
         }
+
+        // public async Task<Item> GetItemAsync(Guid id)
+        // {
+        //     return await _context.Items.FindAsync(id);
+        // }
     }
 }

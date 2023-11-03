@@ -8,13 +8,22 @@ using Service.Interfaces;
 
 namespace Service.Services
 {
-    public class CustomerOrderListService : ICustomerOrderListService
+    public class OrderService : IOrderService
     {
         CoffeShopDbContext _context;
 
-        public CustomerOrderListService(CoffeShopDbContext context)
+        public OrderService(CoffeShopDbContext context)
         {
             _context = context;
+        }
+
+        public void AddToOrderList()
+        {
+            
+        }
+        public void RemoveFromOrderList()
+        {
+            
         }
     }
 }
