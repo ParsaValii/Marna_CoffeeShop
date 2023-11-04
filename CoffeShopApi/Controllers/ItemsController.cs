@@ -7,6 +7,7 @@ using Domain.Entities;
 using Domain;
 using Service.Services;
 using Service.Interfaces;
+using Service.Dtos;
 
 namespace CoffeShopApi.Controllers
 {
@@ -25,6 +26,12 @@ namespace CoffeShopApi.Controllers
         public async Task<ActionResult> CreateNewItem(CreateNewItemRequestDto request)
         {
             await _itemService.CreateNewItem(request);
+            return Ok();
+        }
+        [HttpPost]
+        public async Task<ActionResult> RemoveOrder(RemoveItemRequestDto request)
+        {
+            await _itemService.RemoveItem(request);
             return Ok();
         }
     }

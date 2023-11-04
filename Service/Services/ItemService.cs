@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Domain;
 using Domain.Entities;
 using Microsoft.Extensions.Configuration;
+using Service.Dtos;
 using Service.Interfaces;
 
 namespace Service.Services
@@ -16,7 +17,7 @@ namespace Service.Services
         public ItemService(CoffeShopDbContext context)
         {
             _context = context;
-        }  
+        }
 
         public async Task CreateNewItem(CreateNewItemRequestDto request)
         {
@@ -30,9 +31,10 @@ namespace Service.Services
             await _context.SaveChangesAsync();
         }
 
-        // public async Task<Item> GetItemAsync(Guid id)
-        // {
-        //     return await _context.Items.FindAsync(id);
-        // }
+        public async Task RemoveItem(RemoveItemRequestDto request)
+        {
+            _context.Items.Remove(await _context.Items.FindAsync(request.Itemid));
+            await _context.SaveChangesAsync();
+        }
     }
 }
