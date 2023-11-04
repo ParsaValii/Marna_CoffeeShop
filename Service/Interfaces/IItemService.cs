@@ -8,5 +8,6 @@ namespace Service.Interfaces
     public interface IItemService
     {
         public Task CreateNewItem(CreateNewItemRequestDto request);
+        //todo :public Task RemoveNewItem(RmoveNewItemRequestDto request);
     }
 }

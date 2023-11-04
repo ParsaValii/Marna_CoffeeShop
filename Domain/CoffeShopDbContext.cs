@@ -42,5 +42,7 @@ namespace Domain
         public DbSet<MenuItem> Menu { get; set; }
         public DbSet<Item> Items { get; set; }
         public DbSet<Order> Order { get; set; }
+        public DbSet<Customer> customer { get; set; }
+
     }
 }
