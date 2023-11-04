@@ -22,16 +22,19 @@ namespace Service.Services
         {
             var _order = new Order()
             {
-                //todo : Customer = await _context.Customer.FindAsync(_context.id),
+                Customer = await _context.customer.FindAsync(request.CustomerId),
                 Items = new List<OrderItem>()
-            };   
+            };
+            await _context.Order.AddAsync(_order);
+            await _context.SaveChangesAsync();
         }
 
 
 
-        public Task RemoveOrder(RemoveOrderRequestDto request)
+        public async Task RemoveOrder(RemoveOrderRequestDto request)
         {
-            throw new NotImplementedException();
+            await _context.Order.FindAsync(_context.Order.FindAsync(request.CustomerId));
+            await _context.SaveChangesAsync();
         }
     }
 }

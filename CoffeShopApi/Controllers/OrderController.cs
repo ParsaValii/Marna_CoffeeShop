@@ -17,17 +17,17 @@ namespace CoffeShopApi.Controllers
         {
             _orderService = OrderService;
         }
-        // [HttpPost]
-        // public async Task<ActionResult> AddToOrderList([FromBody]AddOrRemoveFromOrderDto request)
-        // {
-        //     await _OrderService.AddToOrderList(request);
-        //     return Ok();
-        // }
 
         [HttpPost]
-        public async Task<ActionResult> CreateOrder([FromBody]CreateOrderRequestDto request)
+        public async Task<ActionResult> CreateOrder([FromBody] CreateOrderRequestDto request)
         {
-            _orderService.CreateOrder(request);
+            await _orderService.CreateOrder(request);
+            return Ok();
+        }
+        [HttpPost]
+        public async Task<ActionResult> RemoveOrder(RemoveOrderRequestDto request)
+        {
+            await _orderService.RemoveOrder(request);
             return Ok();
         }
     }
