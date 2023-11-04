@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Domain.Entities
 {
-    public class MenuItem
+    public class Menus
     {
         public Guid Id { get; set; }
         public Guid ItemId { get; set; }
