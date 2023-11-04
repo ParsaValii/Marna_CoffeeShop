@@ -10,5 +10,6 @@ namespace Domain.Entities
         public Guid Id { get; set; }
         public string Name { get; set; }
         public decimal Price { get; set; }
+        public IList<OrderItem> orderItem { get; set; }
     }
 }

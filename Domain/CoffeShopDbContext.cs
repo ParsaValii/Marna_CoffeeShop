@@ -38,6 +38,12 @@ namespace Domain
                 .WithOne(oi => oi.Order)
                 .HasForeignKey(oi => oi.ItemId)
                 .IsRequired();
+            modelBuilder.Entity<OrderItem>()
+                .HasOne(or => or.Item)
+                .WithMany(e => e.orderItem)
+                .HasForeignKey(or => or.ItemId)
+                .HasPrincipalKey(e => e.Id);
+
         }
         public DbSet<MenuItem> Menu { get; set; }
         public DbSet<Item> Items { get; set; }
