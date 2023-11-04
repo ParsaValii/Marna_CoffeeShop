@@ -12,8 +12,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Domain.Migrations
 {
     [DbContext(typeof(CoffeShopDbContext))]
-    [Migration("20231101144444_NewDatabaseMigration")]
-    partial class NewDatabaseMigration
+    [Migration("20231102184427_InheritanceFailed")]
+    partial class InheritanceFailed
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -24,6 +24,25 @@ namespace Domain.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
+
+            modelBuilder.Entity("Domain.Entities.CustomerOrderList", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<int>("CountOfEach")
+                        .HasColumnType("integer");
+
+                    b.Property<Guid>("ItemAddedId")
+                        .HasColumnType("uuid");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ItemAddedId");
+
+                    b.ToTable("CustomerOrderList");
+                });
 
             modelBuilder.Entity("Domain.Entities.Item", b =>
                 {
@@ -57,6 +76,17 @@ namespace Domain.Migrations
                     b.HasIndex("ItemId");
 
                     b.ToTable("Menu");
+                });
+
+            modelBuilder.Entity("Domain.Entities.CustomerOrderList", b =>
+                {
+                    b.HasOne("Domain.Entities.Item", "ItemAdded")
+                        .WithMany()
+                        .HasForeignKey("ItemAddedId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("ItemAdded");
                 });
 
             modelBuilder.Entity("Domain.Entities.MenuItem", b =>

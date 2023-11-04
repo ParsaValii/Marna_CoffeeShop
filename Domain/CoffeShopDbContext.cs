@@ -14,18 +14,33 @@ namespace Domain
         // protected readonly IConfiguration Configuration;
         public CoffeShopDbContext() { }
 
-         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-         {
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
             optionsBuilder.UseNpgsql(
                 "Server=localhost;Database=coffeeshopdb;Port=5432;User Id=postgres;Password=postgres"
             );
-         }
+        }
+        // protected override void OnModelCreating(ModelBuilder modelBuilder)
+        // {
+        //     modelBuilder.Entity<Order>()
+        //         .HasMany(o => o.Items)
+        //         .WithOne()
+        //         .HasForeignKey(oi => oi.Item);
+        // }
+
 
         public CoffeShopDbContext(DbContextOptions<CoffeShopDbContext> options)
             : base(options) { }
-
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Order>()
+                .HasMany(o => o.Items)
+                .WithOne(oi => oi.Order)
+                .HasForeignKey(oi => oi.ItemId)
+                .IsRequired();
+        }
         public DbSet<MenuItem> Menu { get; set; }
         public DbSet<Item> Items { get; set; }
-        public DbSet<CustomerOrderList> CustomerOrderList{ get; set; }
+        public DbSet<Order> Order { get; set; }
     }
 }

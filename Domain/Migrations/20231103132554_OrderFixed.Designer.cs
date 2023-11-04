@@ -3,6 +3,7 @@ using System;
 using Domain;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Domain.Migrations
 {
     [DbContext(typeof(CoffeShopDbContext))]
-    partial class CoffeShopDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231103132554_OrderFixed")]
+    partial class OrderFixed
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -86,7 +89,7 @@ namespace Domain.Migrations
                     b.ToTable("Order");
                 });
 
-            modelBuilder.Entity("Domain.Entities.OrderItem", b =>
+            modelBuilder.Entity("Domain.Entities.OrederItem", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -107,7 +110,7 @@ namespace Domain.Migrations
 
                     b.HasIndex("ItemId1");
 
-                    b.ToTable("OrderItem");
+                    b.ToTable("OrederItem");
                 });
 
             modelBuilder.Entity("Domain.Entities.MenuItem", b =>
@@ -132,7 +135,7 @@ namespace Domain.Migrations
                     b.Navigation("Customer");
                 });
 
-            modelBuilder.Entity("Domain.Entities.OrderItem", b =>
+            modelBuilder.Entity("Domain.Entities.OrederItem", b =>
                 {
                     b.HasOne("Domain.Entities.Order", "Order")
                         .WithMany("Items")
