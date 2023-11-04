@@ -10,7 +10,7 @@ namespace Domain.Entities
     {
         public Guid Id { get; set; }
         public Customer Customer { get; set; }
-        public IEnumerable<OrederItem> Items { get; set; }
+        public IList<OrderItem> Items { get; set; }
         [NotMapped]
         public decimal TotalPrice
             => Items.Sum(i => i.Quantity * i.Item.Price);

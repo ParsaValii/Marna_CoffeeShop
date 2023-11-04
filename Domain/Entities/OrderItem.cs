@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Domain.Entities
 {
-    public class OrederItem
+    public class OrderItem
     {
         public Guid Id { get; set; }
         public Order Order { get; set; }

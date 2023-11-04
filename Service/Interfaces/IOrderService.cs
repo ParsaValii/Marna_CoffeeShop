@@ -2,13 +2,14 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Service.Dtos;
 
 namespace Service.Interfaces
 {
-    public class IOrderService
+    public interface IOrderService
     {
-        public void AddToOrderList(AddOrRemoveFromOrderDto request) { }
-        public void RemoveFromOrderList(AddOrRemoveFromOrderDto request) { }
-
+        // public Task AddToOrderList(AddOrRemoveFromOrderDto request);
+        public Task CreateOrder(CreateOrderRequestDto request);
+        public Task RemoveOrder(RemoveOrderRequestDto request);
     }
 }
