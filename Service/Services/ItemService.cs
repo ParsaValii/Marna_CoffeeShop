@@ -31,9 +31,17 @@ namespace Service.Services
             await _context.SaveChangesAsync();
         }
 
+        public async Task EditItem(EditItemRequestDto request)
+        {
+            Item item = await _context.Items.FindAsync(request.Id);
+            item.Name = request.Name;
+            item.Price = request.Price;
+            await _context.SaveChangesAsync();
+        }
+
         public async Task RemoveItem(RemoveItemRequestDto request)
         {
-            _context.Items.Remove(await _context.Items.FindAsync(request.Itemid));
+            _context.Items.Remove(await _context.Items.FindAsync(request));
             await _context.SaveChangesAsync();
         }
     }

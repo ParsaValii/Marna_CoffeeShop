@@ -10,5 +10,6 @@ namespace Service.Interfaces
     {
         public Task CreateNewItem(CreateNewItemRequestDto request);
         public Task RemoveItem(RemoveItemRequestDto request);
+        public Task EditItem(EditItemRequestDto request);
     }
 }
