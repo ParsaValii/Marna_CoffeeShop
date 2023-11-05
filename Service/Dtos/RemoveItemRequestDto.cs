@@ -5,5 +5,5 @@ using System.Threading.Tasks;
 
 namespace Service.Dtos
 {
-    public record RemoveItemRequestDto(Guid Itemid);
+    public record RemoveItemRequestDto(Guid Id);
 }

@@ -5,5 +5,5 @@ using System.Threading.Tasks;
 
 namespace Service.Dtos
 {
-    public record RemoveOrderRequestDto(Guid CustomerId, OrderItemDto Items);
+    public record RemoveOrderRequestDto(Guid Id);
 }
