@@ -18,19 +18,22 @@ namespace Service.Services
             _context = context;
         }
 
-        public async Task CreateOrder(CreateOrderRequestDto request)
+        public async Task<Guid> CreateOrder(CreateOrderRequestDto request)
         {
-            var _order = new Order()
+            var order = new Order()
             {
                 Customer = await _context.customer.FindAsync(request.CustomerId),
                 Items = new List<OrderItem>()
             };
-            await _context.Order.AddAsync(_order);
+            await _context.Order.AddAsync(order);
             await _context.SaveChangesAsync();
+
+            return order.Id;
         }
-        public async Task RemoveOrder(RemoveOrderRequestDto request)
+        public async Task RemoveOrder(Guid id)
         {
-            _context.Order.Remove(await _context.Order.FindAsync(request));
+            var order = await _context.Order.FindAsync(id);
+            _context.Order.Remove(order);
             await _context.SaveChangesAsync();
         }
     }

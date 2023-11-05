@@ -23,21 +23,21 @@ namespace CoffeShopApi.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> CreateNewItem(CreateNewItemRequestDto request)
+        public async Task<ActionResult<Guid>> CreateNewItem(CreateNewItemRequestDto request)
         {
-            await _itemService.CreateNewItem(request);
-            return Ok();
+            var id =  await _itemService.CreateNewItem(request);
+            return Ok(id);
         }
-        [HttpDelete]
-        public async Task<ActionResult> RemoveItem(RemoveItemRequestDto request)
+        [HttpDelete("{ItemId}")]
+        public async Task<ActionResult> RemoveItem(Guid ItemId)
         {
-            await _itemService.RemoveItem(request);
-            return Ok();
+            await _itemService.RemoveItem(ItemId);
+            return NoContent();
         }
-        [HttpPatch]
-        public async Task<ActionResult> EditItem(EditItemRequestDto request)
+        [HttpPatch("{ItemId}")]
+        public async Task<ActionResult> EditItem(Guid ItemId , EditItemRequestDto request)
         {
-            await _itemService.EditItem(request);
+            await _itemService.EditItem(ItemId, request);
             return Ok();
         }
     }

@@ -8,8 +8,8 @@ namespace Service.Interfaces
 {
     public interface IItemService
     {
-        public Task CreateNewItem(CreateNewItemRequestDto request);
-        public Task RemoveItem(RemoveItemRequestDto request);
-        public Task EditItem(EditItemRequestDto request);
+        public Task<Guid> CreateNewItem(CreateNewItemRequestDto request);
+        public Task RemoveItem(Guid Id);
+        public Task EditItem(Guid Id, EditItemRequestDto request);
     }
 }

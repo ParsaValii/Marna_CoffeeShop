@@ -19,30 +19,31 @@ namespace Service.Services
             _context = context;
         }
 
-        public async Task CreateNewItem(CreateNewItemRequestDto request)
+        public async Task<Guid> CreateNewItem(CreateNewItemRequestDto request)
         {
             var item = new Item
             {
                 Name = request.Name,
                 Price = request.Price
             };
-
             await _context.Items.AddAsync(item);
             await _context.SaveChangesAsync();
+            return item.Id;
         }
-
-        public async Task EditItem(EditItemRequestDto request)
+        public async Task RemoveItem(Guid id)
         {
-            Item item = await _context.Items.FindAsync(request.Id);
+            var item = await _context.Items.FindAsync(id);
+            _context.Items.Remove(item);
+            await _context.SaveChangesAsync();
+        }
+        public async Task EditItem(Guid id, EditItemRequestDto request)
+        {
+            var item = await _context.Items.FindAsync(id);
             item.Name = request.Name;
             item.Price = request.Price;
             await _context.SaveChangesAsync();
         }
 
-        public async Task RemoveItem(RemoveItemRequestDto request)
-        {
-            _context.Items.Remove(await _context.Items.FindAsync(request));
-            await _context.SaveChangesAsync();
-        }
+
     }
 }

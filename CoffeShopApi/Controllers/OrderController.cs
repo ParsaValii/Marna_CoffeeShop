@@ -10,25 +10,26 @@ namespace CoffeShopApi.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class OrderController : ControllerBase
+    public class OrdersController : ControllerBase
     {
         IOrderService _orderService;
-        public OrderController(IOrderService OrderService)
+        public OrdersController(IOrderService OrderService)
         {
             _orderService = OrderService;
         }
 
         [HttpPost]
-        public async Task<ActionResult> CreateOrder([FromBody] CreateOrderRequestDto request)
+        public async Task<ActionResult<Guid>> CreateOrder(CreateOrderRequestDto request)
         {
-            await _orderService.CreateOrder(request);
-            return Ok();
+            var id = await _orderService.CreateOrder(request);
+            return Ok(id);
         }
-        [HttpDelete]
-        public async Task<ActionResult> RemoveOrder(RemoveOrderRequestDto request)
+        // api/orders/{orderId}
+        [HttpDelete("{orderId}")]
+        public async Task<ActionResult> RemoveOrder(Guid orderId)
         {
-            await _orderService.RemoveOrder(request);
-            return Ok();
+            await _orderService.RemoveOrder(orderId);
+            return NoContent();
         }
     }
 }

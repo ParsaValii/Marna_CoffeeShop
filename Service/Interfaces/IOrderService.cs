@@ -9,7 +9,7 @@ namespace Service.Interfaces
     public interface IOrderService
     {
         // public Task AddToOrderList(AddOrRemoveFromOrderDto request);
-        public Task CreateOrder(CreateOrderRequestDto request);
-        public Task RemoveOrder(RemoveOrderRequestDto request);
+        public Task<Guid> CreateOrder(CreateOrderRequestDto request);
+        public Task RemoveOrder(Guid id);
     }
 }
