@@ -24,7 +24,7 @@ namespace CoffeShopApi.Controllers
             await _customerService.CreateCustomer(request);
             return Ok();
         }
-        [HttpPost]
+        [HttpDelete]
         public async Task<ActionResult> RemoveCustomer(RemoveCustomerDto request)
         {
             await _customerService.RemoveCustomer(request);

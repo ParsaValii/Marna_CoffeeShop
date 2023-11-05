@@ -28,12 +28,9 @@ namespace Service.Services
             await _context.Order.AddAsync(_order);
             await _context.SaveChangesAsync();
         }
-
-
-
         public async Task RemoveOrder(RemoveOrderRequestDto request)
         {
-            await _context.Order.FindAsync(_context.Order.FindAsync(request.CustomerId));
+            _context.Order.Remove(await _context.Order.FindAsync(request.CustomerId));
             await _context.SaveChangesAsync();
         }
     }

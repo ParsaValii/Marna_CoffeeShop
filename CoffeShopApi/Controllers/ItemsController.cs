@@ -28,7 +28,7 @@ namespace CoffeShopApi.Controllers
             await _itemService.CreateNewItem(request);
             return Ok();
         }
-        [HttpPost]
+        [HttpDelete]
         public async Task<ActionResult> RemoveOrder(RemoveItemRequestDto request)
         {
             await _itemService.RemoveItem(request);
