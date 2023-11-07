@@ -1,3 +1,4 @@
+using System.Net;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,6 +23,18 @@ namespace CoffeShopApi.Controllers
         {
             var id = await _menuService.CreateMenu(request);
             return Ok(id);
+        }
+        [HttpDelete("{MenuId}")]
+        public async Task<ActionResult> RemooveMenu(Guid MenuId)
+        {
+            await _menuService.RemoveMenu(MenuId);
+            return NoContent();
+        }
+        [HttpPatch("{MenuId}")]
+        public async Task<ActionResult> EditMenu(Guid id, EditMenuDto request)
+        {
+            await _menuService.EditMenu(id, request);
+            return NoContent();
         }
     }
 }

@@ -38,7 +38,7 @@ namespace CoffeShopApi.Controllers
         public async Task<ActionResult> EditItem(Guid ItemId , EditItemRequestDto request)
         {
             await _itemService.EditItem(ItemId, request);
-            return Ok();
+            return NoContent();
         }
     }
 }

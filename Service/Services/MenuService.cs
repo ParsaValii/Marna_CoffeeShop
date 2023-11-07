@@ -28,6 +28,17 @@ namespace Service.Services
             
         }
 
-        
+        public async Task EditMenu(Guid id, EditMenuDto request)
+        {
+            var menu = await _Context.Menu.FindAsync(id);
+            menu.Name = request.name;
+            await _Context.SaveChangesAsync();
+        }
+
+        public async Task RemoveMenu(Guid id)
+        {
+            var menu = await _Context.Menu.FindAsync(id);
+            _Context.Menu.Remove(menu);
+        }
     }
 }
