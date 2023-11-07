@@ -3,4 +3,4 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-public record CreateNewItemRequestDto(string Name, decimal Price);
+public record CreateNewItemRequestDto(string Name, decimal Price, Guid MenuId);

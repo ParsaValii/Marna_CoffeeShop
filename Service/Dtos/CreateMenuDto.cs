@@ -5,5 +5,5 @@ using System.Threading.Tasks;
 
 namespace Service.Dtos
 {
-    public record EditItemRequestDto(String Name, decimal Price, Guid MenuId);
+    public record CreateMenuDto(string name);
 }

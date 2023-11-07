@@ -24,7 +24,8 @@ namespace Service.Services
             var item = new Item
             {
                 Name = request.Name,
-                Price = request.Price
+                Price = request.Price,
+                Menu = await _context.Menu.FindAsync(request.MenuId)
             };
             await _context.Items.AddAsync(item);
             await _context.SaveChangesAsync();
@@ -41,6 +42,7 @@ namespace Service.Services
             var item = await _context.Items.FindAsync(id);
             item.Name = request.Name;
             item.Price = request.Price;
+            item.Menu = await _context.Menu.FindAsync(request.MenuId);
             await _context.SaveChangesAsync();
         }
 

@@ -40,12 +40,12 @@ namespace Domain
                 .IsRequired();
             modelBuilder.Entity<OrderItem>()
                 .HasOne(or => or.Item)
-                .WithMany(e => e.orderItem)
+                .WithMany(e => e.OrderItem)
                 .HasForeignKey(or => or.ItemId)
                 .HasPrincipalKey(e => e.Id);
 
         }
-        public DbSet<Menus> Menu { get; set; }
+        public DbSet<Menu> Menu { get; set; }
         public DbSet<Item> Items { get; set; }
         public DbSet<Order> Order { get; set; }
         public DbSet<Customer> customer { get; set; }

@@ -43,6 +43,9 @@ namespace Domain.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
 
+                    b.Property<Guid>("MenuId")
+                        .HasColumnType("uuid");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("text");
@@ -52,21 +55,22 @@ namespace Domain.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("MenuId");
+
                     b.ToTable("Items");
                 });
 
-            modelBuilder.Entity("Domain.Entities.MenuItem", b =>
+            modelBuilder.Entity("Domain.Entities.Menu", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
 
-                    b.Property<Guid>("ItemId")
-                        .HasColumnType("uuid");
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("text");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("ItemId");
 
                     b.ToTable("Menu");
                 });
@@ -106,15 +110,15 @@ namespace Domain.Migrations
                     b.ToTable("OrderItem");
                 });
 
-            modelBuilder.Entity("Domain.Entities.MenuItem", b =>
+            modelBuilder.Entity("Domain.Entities.Item", b =>
                 {
-                    b.HasOne("Domain.Entities.Item", "Item")
-                        .WithMany()
-                        .HasForeignKey("ItemId")
+                    b.HasOne("Domain.Entities.Menu", "Menu")
+                        .WithMany("Items")
+                        .HasForeignKey("MenuId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Item");
+                    b.Navigation("Menu");
                 });
 
             modelBuilder.Entity("Domain.Entities.Order", b =>
@@ -131,7 +135,7 @@ namespace Domain.Migrations
             modelBuilder.Entity("Domain.Entities.OrderItem", b =>
                 {
                     b.HasOne("Domain.Entities.Item", "Item")
-                        .WithMany("orderItem")
+                        .WithMany("OrderItem")
                         .HasForeignKey("ItemId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -154,7 +158,12 @@ namespace Domain.Migrations
 
             modelBuilder.Entity("Domain.Entities.Item", b =>
                 {
-                    b.Navigation("orderItem");
+                    b.Navigation("OrderItem");
+                });
+
+            modelBuilder.Entity("Domain.Entities.Menu", b =>
+                {
+                    b.Navigation("Items");
                 });
 
             modelBuilder.Entity("Domain.Entities.Order", b =>
