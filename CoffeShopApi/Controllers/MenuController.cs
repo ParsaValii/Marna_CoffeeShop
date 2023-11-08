@@ -31,9 +31,9 @@ namespace CoffeShopApi.Controllers
             return NoContent();
         }
         [HttpPatch("{MenuId}")]
-        public async Task<ActionResult> EditMenu(Guid id, EditMenuDto request)
+        public async Task<ActionResult> EditMenu(Guid MenuId, EditMenuDto request)
         {
-            await _menuService.EditMenu(id, request);
+            await _menuService.EditMenu(MenuId, request);
             return NoContent();
         }
     }
