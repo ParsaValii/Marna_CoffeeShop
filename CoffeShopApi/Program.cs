@@ -21,6 +21,7 @@ builder.Services.AddScoped<IItemService, ItemService>();
 builder.Services.AddScoped<IOrderService, OrderService>();
 builder.Services.AddScoped<ICustomerService, CustomerService>();
 builder.Services.AddScoped<IMenuService, MenuService>();
+builder.Services.AddScoped<IDisplayMenuService, DisplayMenuService>();
 
 var app = builder.Build();
 

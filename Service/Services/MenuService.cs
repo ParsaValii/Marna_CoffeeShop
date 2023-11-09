@@ -20,7 +20,8 @@ namespace Service.Services
         {
             var menu = new Menu()
             {
-                Name = request.name
+                Name = request.name,
+                Items = new List<Item>()
             };
             await _Context.Menu.AddAsync(menu);
             await _Context.SaveChangesAsync();

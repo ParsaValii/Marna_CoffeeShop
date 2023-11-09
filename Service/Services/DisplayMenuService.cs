@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Domain;
+using Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using Service.Interfaces;
 
@@ -15,10 +16,10 @@ namespace Service.Services
         {
             _context = context;
         }
-
-        public Task Display()
+        public async Task<Menu> DisplayMenu(Guid MeniId)
         {
-            throw new NotImplementedException();
+            var menu = await _context.Menu.FindAsync(MeniId);
+            return menu;
         }
     }
 }
